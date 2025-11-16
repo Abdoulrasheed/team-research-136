@@ -4,9 +4,9 @@ Phase I
 - [x] Identify Columns
 - [x] RQ
 - [ ] Rename Columns
-- [ ] Clean Dataset
+- [ ] Clean Dataset (remove rows with missing data)
 - [ ] Histogram (Check Distribution)
-- [ ] Hypothesis Testing (Find Mean, T test/)
+- [ ] Hypothesis Testing (Find Mean, T test/wilcox test)
 - [ ] Find Pvalue wether is greater or less than alpha
 - [ ] Reject null hypothesis or not
 - [ ] Presentation of Hypothesis
