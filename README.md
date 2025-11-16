@@ -1,6 +1,6 @@
 Phase I
-- [ ] Identify Columns
-- [ ] RQ
+- [x] Identify Columns
+- [x] RQ
 - [ ] Rename Columns
 - [ ] Clean Dataset
 - [ ] Histogram (Check Distribution)
