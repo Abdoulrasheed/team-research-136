@@ -73,3 +73,14 @@ hist(cgpa_depressed,
      border = "darkred",
      breaks = 20
 )
+
+# Create a boxplot - to compare CGPA of depressed and non-depressed students
+# The boxplot supports the hypothesis that there may be little difference
+boxplot(CGPA ~ Depression, 
+        data = data_clean,
+        main = "Comparison of CGPA by Depression Status",
+        xlab = "Depression Status",
+        ylab = "CGPA (Grade Point Average)",
+        names = c("Not Depressed", "Depressed"),
+        col = c("lightblue", "lightcoral"),
+        border = c("darkblue", "darkred"))
