@@ -63,4 +63,13 @@ hist(cgpa_not_depressed,
      breaks = 20
 )
 
-
+# Histogram of CGPA - depressed students
+# Does not show a normal distribution - result of histogram
+hist(cgpa_depressed, 
+     main = "CGPA Distribution - Depressed Students",
+     xlab = "CGPA",
+     ylab = "Frequency",
+     col = "lightcoral",
+     border = "darkred",
+     breaks = 20
+)
