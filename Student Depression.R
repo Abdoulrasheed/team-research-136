@@ -53,7 +53,7 @@ hist(cgpa_overall,
 )
 
 # Histogram of CGPA - non depressed students
-# Does not show a normal distribution
+# Does not show a normal distribution - result of histogram
 hist(cgpa_not_depressed, 
      main = "CGPA Distribution - Not Depressed Students",
      xlab = "CGPA",
