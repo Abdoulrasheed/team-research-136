@@ -33,3 +33,9 @@ cgpa_by_depression <- data_clean %>%
     Max = max(CGPA)
   )
 print(cgpa_by_depression)
+
+# Check distribution (normality assessment)
+# Separate CGPA by depression status using base R bracket notation
+cgpa_not_depressed <- data_clean$CGPA[data_clean$Depression == 0]
+cgpa_depressed <- data_clean$CGPA[data_clean$Depression == 1]
+cgpa_overall <- data_clean$CGPA
