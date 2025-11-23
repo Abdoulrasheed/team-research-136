@@ -39,3 +39,17 @@ print(cgpa_by_depression)
 cgpa_not_depressed <- data_clean$CGPA[data_clean$Depression == 0]
 cgpa_depressed <- data_clean$CGPA[data_clean$Depression == 1]
 cgpa_overall <- data_clean$CGPA
+
+# create histogram of the overall student CGPA
+# Visualizations - Histograms (Distribution Check)
+# Does not show a normal distrib
+hist(cgpa_overall, 
+     main = "CGPA Distribution among Depressed and Non-depressed students",
+     xlab = "CGPA",
+     ylab = "Frequency",
+     col = "lightblue",
+     border = "darkblue",
+     breaks = 20
+)
+
+
