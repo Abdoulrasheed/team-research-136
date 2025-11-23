@@ -15,3 +15,7 @@ data_clean <- data_students %>% filter(!is.na(CGPA) & !is.na(Depression))
 
 print("Clean observations (no missing data):")
 print(nrow(data_clean))
+
+# Overall CGPA statistics
+print("Overall CGPA Summary:")
+summary(data_clean$CGPA)
