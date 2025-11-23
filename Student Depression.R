@@ -42,9 +42,20 @@ cgpa_overall <- data_clean$CGPA
 
 # create histogram of the overall student CGPA
 # Visualizations - Histograms (Distribution Check)
-# Does not show a normal distrib
+# Does not show a normal distribution
 hist(cgpa_overall, 
      main = "CGPA Distribution among Depressed and Non-depressed students",
+     xlab = "CGPA",
+     ylab = "Frequency",
+     col = "lightblue",
+     border = "darkblue",
+     breaks = 20
+)
+
+# Histogram of CGPA - non depressed students
+# Does not show a normal distribution - result of histogram
+hist(cgpa_not_depressed, 
+     main = "CGPA Distribution - Not Depressed Students",
      xlab = "CGPA",
      ylab = "Frequency",
      col = "lightblue",
