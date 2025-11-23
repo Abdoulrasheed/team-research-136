@@ -19,3 +19,17 @@ print(nrow(data_clean))
 # Overall CGPA statistics
 print("Overall CGPA Summary:")
 summary(data_clean$CGPA)
+
+# CGPA by depression status
+print("CGPA by Depression Status:")
+cgpa_by_depression <- data_clean %>%
+  group_by(Depression) %>%
+  summarise(
+    n = n(),
+    Mean = mean(CGPA),
+    SD = sd(CGPA),
+    Median = median(CGPA),
+    Min = min(CGPA),
+    Max = max(CGPA)
+  )
+print(cgpa_by_depression)
