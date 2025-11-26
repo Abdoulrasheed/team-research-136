@@ -20,6 +20,7 @@ print(nrow(data_clean))
 print("Overall CGPA Summary:")
 summary(data_clean$CGPA)
 
+
 # CGPA by depression status
 print("CGPA by Depression Status:")
 cgpa_by_depression <- data_clean %>%
@@ -39,6 +40,18 @@ print(cgpa_by_depression)
 cgpa_not_depressed <- data_clean$CGPA[data_clean$Depression == 0]
 cgpa_depressed <- data_clean$CGPA[data_clean$Depression == 1]
 cgpa_overall <- data_clean$CGPA
+
+#create a pie chart for the depressed and non-depressed students
+#pie chart with proper labels
+counts <- table(data_clean$Depression)
+labels <- c("Non-Depressed", "Depressed")
+
+pie(
+  counts,
+  main = "Distribution of Depression Status",
+  col = rainbow(length(counts)),
+  labels = paste(labels, "\n", counts)
+)
 
 # create histogram of the overall student CGPA
 # Visualizations - Histograms (Distribution Check)
