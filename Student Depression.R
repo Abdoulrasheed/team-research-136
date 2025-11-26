@@ -53,9 +53,8 @@ pie(
   labels = paste(labels, "\n", counts)
 )
 
-# create histogram of the overall student CGPA
-# Visualizations - Histograms (Distribution Check)
-# Does not show a normal distribution
+# create histogram of the overall student CGPA - no bell curve overlay
+# Visualizations - Histograms (Distribution Check) 
 hist(cgpa_overall, 
      main = "CGPA Distribution among Depressed and Non-depressed students",
      xlab = "CGPA",
@@ -64,6 +63,36 @@ hist(cgpa_overall,
      border = "darkblue",
      breaks = 20
 )
+
+# Histogram - bell curve overlay with frequency
+h <- hist(cgpa_overall,
+          main = "CGPA Distribution",
+          xlab = "CGPA",
+          col = "lightblue",
+          border = "darkblue",
+          breaks = 20,
+          freq = TRUE)
+
+mean_val <- mean(cgpa_overall, na.rm = TRUE)
+sd_val <- sd(cgpa_overall, na.rm = TRUE)
+
+# Scale the bell curve to match frequency
+x <- seq(min(cgpa_overall), max(cgpa_overall), length = 100)
+y <- dnorm(x, mean_val, sd_val) * length(cgpa_overall) * diff(h$breaks)[1]
+
+# Overlay curve
+lines(x, y, col = "red", lwd = 2)
+
+# Boxplot for the CGPA of depressed and non-depressed students created
+# depressed students perform slightly better academically
+boxplot(CGPA ~ Depression, 
+        data = data_clean,
+        main = "Comparison of CGPA by Depression Status",
+        xlab = "Depression Status",
+        ylab = "CGPA (Grade Point Average)",
+        names = c("Not Depressed", "Depressed"),
+        col = c("lightblue", "lightcoral"),
+        border = c("darkblue", "darkred"))
 
 # Statistical Tests
 # Independent T-Test
