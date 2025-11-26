@@ -64,7 +64,7 @@ hist(cgpa_overall,
      breaks = 20
 )
 
-# Histogram - bell curve overlay with frequency
+# Overall CGPA Histogram (both depressed and non-depressed students) - bell curve overlay with frequency
 h <- hist(cgpa_overall,
           main = "CGPA Distribution",
           xlab = "CGPA",
