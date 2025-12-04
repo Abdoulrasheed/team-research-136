@@ -65,7 +65,7 @@ hist(cgpa_overall,
 )
 
 # Overall CGPA Histogram (both depressed and non-depressed students) - bell curve overlay with frequency
-print("Histogram of cumulative grade point average (CGPA) of Depressed and Non-depressed University/College students in India")
+print("Histogram of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University/College students in India")
 h <- hist(cgpa_overall,
           main = "CGPA Distribution among Depressed and Non-depressed students",
           xlab = "CGPA (cumulative grade point average)",
@@ -86,11 +86,12 @@ lines(x, y, col = "red", lwd = 2)
 
 # Boxplot for the CGPA of depressed and non-depressed students created
 # depressed students perform slightly better academically
+print("Boxplot of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University/College students in India")
 boxplot(CGPA ~ Depression, 
         data = data_clean,
-        main = "Comparison of CGPA by Depression Status",
+        main = "Comparison of University Student's CGPA by Depression Status",
         xlab = "Depression Status",
-        ylab = "CGPA (Grade Point Average)",
+        ylab = "CGPA (Cumulative Grade Point Average)",
         names = c("Not Depressed", "Depressed"),
         col = c("lightblue", "lightcoral"),
         border = c("darkblue", "darkred"))
