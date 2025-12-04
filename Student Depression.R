@@ -2,7 +2,7 @@ library(tidyverse)
 data <- read_csv("dataset.csv")
 
 # Filter students only??
-data_students <- data %>% 
+data_students <- data %>%
   filter(Profession == "Student")
 
 print("Total observations in dataset:")
@@ -54,10 +54,10 @@ pie(
 )
 
 # create histogram of the overall student CGPA - no bell curve overlay
-# Visualizations - Histograms (Distribution Check) 
-hist(cgpa_overall, 
+# Visualizations - Histograms (Distribution Check)
+hist(cgpa_overall,
      main = "CGPA Distribution among Depressed and Non-depressed students",
-     xlab = "CGPA",
+     xlab = "CGPA cumulative grade point average",
      ylab = "Frequency",
      col = "lightblue",
      border = "darkblue",
@@ -65,9 +65,10 @@ hist(cgpa_overall,
 )
 
 # Overall CGPA Histogram (both depressed and non-depressed students) - bell curve overlay with frequency
+print("Histogram of cumulative grade point average (CGPA) of Depressed and Non-depressed University/College students in India")
 h <- hist(cgpa_overall,
-          main = "CGPA Distribution",
-          xlab = "CGPA",
+          main = "CGPA Distribution among Depressed and Non-depressed students",
+          xlab = "CGPA (cumulative grade point average)",
           col = "lightblue",
           border = "darkblue",
           breaks = 20,
@@ -95,14 +96,14 @@ boxplot(CGPA ~ Depression,
         border = c("darkblue", "darkred"))
 
 # QQ Plot - Not Depressed
-qqnorm(cgpa_not_depressed, 
+qqnorm(cgpa_not_depressed,
        main = "Q-Q Plot: Non-Depressed Students",
        col = "darkblue",
        pch = 19)
 qqline(cgpa_not_depressed, col = "red", lwd = 2)
 
 # QQ Plot - Depressed
-qqnorm(cgpa_depressed, 
+qqnorm(cgpa_depressed,
        main = "Q-Q Plot: Depressed Students",
        col = "darkred",
        pch = 19)
@@ -114,7 +115,7 @@ qqline(cgpa_depressed, col = "red", lwd = 2)
 print("Independent t-test:")
 t_test_result <- t.test(CGPA ~ Depression, data = data_clean)
 print(t_test_result)
- 
+
 # Wilcoxon Rank-Sum Test
 print("Wilcoxon Rank-Sum Test:")
 wilcox_test_result <- wilcox.test(CGPA ~ Depression, data = data_clean)
