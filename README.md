@@ -1,5 +1,7 @@
 Dataset : https://www.kaggle.com/datasets/adilshamim8/student-depression-dataset/data
 
+Research Question (RQ) - "Is there a difference in the median student academic score (Cumulative Grade Point Average (CGPA)) between depressed and non-depressed University students in India?"
+
 Phase I
 - [x] Identify Columns
 - [x] RQ
