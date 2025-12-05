@@ -147,3 +147,15 @@ print(t_test_result)
 print("Wilcoxon Rank-Sum Test:")
 wilcox_test_result <- wilcox.test(CGPA ~ Depression, data = data_clean)
 print(wilcox_test_result)
+
+
+#remove 'Class 12' from Degree
+data_clean <- data_clean %>%
+  filter(Degree != "'Class 12'")
+
+
+##find unique Degree values again to see whether noisy data still exists
+unique(data_clean$Degree)
+
+# find the total number of unique degree values within the dataset
+length(unique(data_clean$Degree))
