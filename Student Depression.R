@@ -10,8 +10,8 @@ print(nrow(data))
 print("Student observations:")
 print(nrow(data_students))
 
-# Clean data; Remove any rows with missing CGPA or Depression values
-data_clean <- data_students %>% filter(!is.na(CGPA) & !is.na(Depression))
+# Clean data; Remove any rows with missing CGPA or Depression values, and remove CGPA of 0
+data_clean <- data_students %>% filter(!is.na(CGPA) & !is.na(Depression) & CGPA != 0)
 
 print("Clean observations (no missing data):")
 print(nrow(data_clean))
