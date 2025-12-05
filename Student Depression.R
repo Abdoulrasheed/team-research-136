@@ -80,28 +80,6 @@ cgpa_not_depressed <- data_clean$CGPA[data_clean$Depression == 0]
 cgpa_depressed <- data_clean$CGPA[data_clean$Depression == 1]
 cgpa_overall <- data_clean$CGPA
 
-#create a pie chart for the depressed and non-depressed students with percentages
-#pie chart with proper labels
-# Count depression status
-counts <- table(data_clean$Depression)
-
-# Labels
-labels <- c("Non-Depressed", "Depressed")
-
-# Calculate percentages
-percentages <- round(100 * counts / sum(counts), 1)  # rounded to 1 decimal
-
-# Combine labels with counts and percentages
-labels_with_pct <- paste0(labels, "\n", counts, " (", percentages, "%)")
-
-# Create pie chart
-pie(
-  counts,
-  main = "Distribution of Depression Status of University Students",
-  col = rainbow(length(counts)),
-  labels = labels_with_pct
-)
-
 # create histogram of the overall student CGPA - no bell curve overlay
 # Visualizations - Histograms (Distribution Check)
 hist(cgpa_overall,
@@ -145,8 +123,34 @@ boxplot(CGPA ~ Depression,
         col = c("lightblue", "lightcoral"),
         border = c("darkblue", "darkred"))
 
+
+#create a pie chart for the depressed and non-depressed students with percentages
+#pie chart with proper labels
+# Count depression status
+counts <- table(data_clean$Depression)
+
+# Labels
+labels <- c("Non-Depressed", "Depressed")
+
+# Calculate percentages
+percentages <- round(100 * counts / sum(counts), 1)  # rounded to 1 decimal
+
+# Combine labels with counts and percentages
+labels_with_pct <- paste0(labels, "\n", counts, " (", percentages, "%)")
+
+# Create pie chart
+pie(
+  counts,
+  main = "Distribution of Depression Status of University Students",
+  col = rainbow(length(counts)),
+  labels = labels_with_pct
+)
+
 # Statistical Tests
 # Independent T-Test
 print("Independent t-test:")
 t_test_result <- t.test(CGPA ~ Depression, data = data_clean)
 print(t_test_result)
+
+
+
