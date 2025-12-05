@@ -16,10 +16,36 @@ data_clean <- data_students %>% filter(!is.na(CGPA) & !is.na(Depression))
 print("Clean observations (no missing data):")
 print(nrow(data_clean))
 
+#to check for noisy values within the dataset in every column
+for (col in names(data_clean)) {
+  cat("-----", col, "-----\n")
+  print(unique(data_clean[[col]]))
+  cat("\n")
+}
+
+# find the total number of unique city values within the dataset
+length(unique(data_clean$City))
+
+
+#keep only valid city names and remove any noisy values
+valid_cities <- c(
+  "Visakhapatnam", "Bangalore", "Srinagar", "Varanasi", "Jaipur", "Pune",
+  "Thane", "Chennai", "Nagpur", "Nashik", "Vadodara", "Kalyan", "Rajkot",
+  "Ahmedabad", "Kolkata", "Mumbai", "Lucknow", "Indore", "Surat", "Ludhiana",
+  "Bhopal", "Meerut", "Agra", "Ghaziabad", "Hyderabad", "Vasai-Virar",
+  "Kanpur", "Patna", "Faridabad", "Delhi"
+)
+
+data_clean <- data_clean %>% 
+  filter(City %in% valid_cities)
+
+#find unique cities again to see whether noisy data still exists
+unique(data_clean$City)
+
+
 # Overall CGPA statistics
 print("Overall CGPA Summary:")
 summary(data_clean$CGPA)
-
 
 # CGPA by depression status
 print("CGPA by Depression Status:")
@@ -121,30 +147,3 @@ print(t_test_result)
 print("Wilcoxon Rank-Sum Test:")
 wilcox_test_result <- wilcox.test(CGPA ~ Depression, data = data_clean)
 print(wilcox_test_result)
-
-##newly added data cleaning steps
-#to check for noisy values within the dataset in every column
-for (col in names(data_clean)) {
-  cat("-----", col, "-----\n")
-  print(unique(data_clean[[col]]))
-  cat("\n")
-}
-
-# find the total number of unique city values within the dataset
-length(unique(data_clean$City))
-
-
-#keep only valid city names and remove any noisy values
-valid_cities <- c(
-  "Visakhapatnam", "Bangalore", "Srinagar", "Varanasi", "Jaipur", "Pune",
-  "Thane", "Chennai", "Nagpur", "Nashik", "Vadodara", "Kalyan", "Rajkot",
-  "Ahmedabad", "Kolkata", "Mumbai", "Lucknow", "Indore", "Surat", "Ludhiana",
-  "Bhopal", "Meerut", "Agra", "Ghaziabad", "Hyderabad", "Vasai-Virar",
-  "Kanpur", "Patna", "Faridabad", "Delhi"
-)
-
-data_clean <- data_clean %>% 
-  filter(City %in% valid_cities)
-
-#find unique cities again to see whether noisy data still exists
-unique(data_clean$City)
