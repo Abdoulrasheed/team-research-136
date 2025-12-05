@@ -145,21 +145,6 @@ boxplot(CGPA ~ Depression,
         col = c("lightblue", "lightcoral"),
         border = c("darkblue", "darkred"))
 
-# QQ Plot - Not Depressed
-qqnorm(cgpa_not_depressed,
-       main = "Q-Q Plot: Non-Depressed Students",
-       col = "darkblue",
-       pch = 19)
-qqline(cgpa_not_depressed, col = "red", lwd = 2)
-
-# QQ Plot - Depressed
-qqnorm(cgpa_depressed,
-       main = "Q-Q Plot: Depressed Students",
-       col = "darkred",
-       pch = 19)
-qqline(cgpa_depressed, col = "red", lwd = 2)
-
-
 # Statistical Tests
 # Independent T-Test
 print("Independent t-test:")
