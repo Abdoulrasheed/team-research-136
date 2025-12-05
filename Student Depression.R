@@ -48,7 +48,8 @@ print("Overall CGPA Summary:")
 summary(data_clean$CGPA)
 
 # CGPA by depression status
-print("CGPA by Depression Status:")
+#adding Q1, Q2, IQR and add the title to the table
+print("CGPA by Depression Status (descriptive statistics)")
 cgpa_by_depression <- data_clean %>%
   group_by(Depression) %>%
   summarise(
@@ -56,6 +57,9 @@ cgpa_by_depression <- data_clean %>%
     Mean = mean(CGPA),
     SD = sd(CGPA),
     Median = median(CGPA),
+    Q1 = quantile(CGPA, 0.25),
+    Q3 = quantile(CGPA, 0.75),
+    IQR = IQR(CGPA),
     Min = min(CGPA),
     Max = max(CGPA)
   )
