@@ -13,7 +13,7 @@ Phase I
 ![Histogram](./plots/histogram%20-%20normal%20distribution.png)
 ## - [x] Boxplot
 ![Boxplot](./plots/boxplot.png)
-## - [x] Hypothesis Testing (Find Mean, T test/wilcox test)
+## - [x] Hypothesis Testing (Find Mean, T Test)
 ## - [x] Find Pvalue wether is greater or less than alpha
 ## - [x] Reject null hypothesis or not
 ## - [x] Presentation of Hypothesis
