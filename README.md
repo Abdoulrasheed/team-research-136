@@ -10,11 +10,8 @@ Phase I
 ## - [x] Pie Chart
 ![Pie Chart](./plots/ccba6266-837a-4ba6-8614-8046477bb51c.png)
 ## - [x] Histogram (Check Distribution)
-![Histogram](./plots/hist-2cb4aa37-a709-4496-880c-cf1668ba6fae.png)
+![Histogram]
 ## - [x] Boxplot
-## - [x] QQ Plots
-![QQ Plot Non Depressed](./plots/QQ-23a111a7-94aa-42ac-9990-8b253bc5a22d.png)
-![QQ Plot Depressed](./plots/qq-29148866-37db-4210-90fb-04e61db52318.png)
 ## - [x] Hypothesis Testing (Find Mean, T test/wilcox test)
 ## - [x] Find Pvalue wether is greater or less than alpha
 ## - [x] Reject null hypothesis or not
