@@ -8,7 +8,7 @@ Phase I
 ## - [x] Rename Columns
 ## - [x] Clean Dataset (remove rows with missing data)
 ## - [x] Pie Chart
-![Pie Chart](./plots/ccba6266-837a-4ba6-8614-8046477bb51c.png)
+![Pie Chart](./plots/piechart.png)
 ## - [x] Histogram (Check Distribution)
 ![Histogram]
 ## - [x] Boxplot
