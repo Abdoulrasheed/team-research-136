@@ -140,6 +140,3 @@ pie(
 print("Independent t-test:")
 t_test_result <- t.test(CGPA ~ Depression, data = data_clean)
 print(t_test_result)
-
-
-
