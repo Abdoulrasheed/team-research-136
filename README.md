@@ -10,7 +10,7 @@ Phase I
 ## - [x] Pie Chart
 ![Pie Chart](./plots/piechart.png)
 ## - [x] Histogram (Check Distribution)
-![Histogram]
+![Histogram](./plots/histogram%20-%20normal%20distribution.png)
 ## - [x] Boxplot
 ## - [x] Hypothesis Testing (Find Mean, T test/wilcox test)
 ## - [x] Find Pvalue wether is greater or less than alpha
