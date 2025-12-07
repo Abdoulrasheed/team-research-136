@@ -1,5 +1,5 @@
 library(tidyverse)
-data <- read_csv("student_depression_dataset.csv")
+data <- read_csv("dataset.csv")
 
 # Filter students only??
 data_students <- data %>%
