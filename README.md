@@ -7,12 +7,12 @@ Phase I
 ## - [x] RQ
 ## - [x] Rename Columns
 ## - [x] Clean Dataset (remove rows with missing data)
-## - [x] Pie Chart
-![Pie Chart](./plots/piechart.png)
-## - [x] Histogram (Check Distribution)
 ![Histogram](./plots/histogram%20-%20normal%20distribution.png)
 ## - [x] Boxplot
 ![Boxplot](./plots/boxplot.png)
+## - [x] Pie Chart
+![Pie Chart](./plots/piechart.png)
+## - [x] Histogram (Check Distribution)
 ## - [x] Hypothesis Testing (Find Mean, T Test)
 ## - [x] Find Pvalue wether is greater or less than alpha
 ## - [x] Reject null hypothesis or not
