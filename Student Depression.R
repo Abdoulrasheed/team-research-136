@@ -21,7 +21,6 @@ data_clean <- data_students %>% filter(!is.na(CGPA) & !is.na(Depression) & CGPA 
 print("Clean observations (no missing data):")
 print(nrow(data_clean))
 
-
 #check for the total number of rows removed from the dataset after data cleaning and filterng
 nrow(data)          # original
 nrow(data_clean)    # cleaned
