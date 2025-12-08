@@ -1,5 +1,5 @@
 library(tidyverse)
-data <- read_csv("student_depression_dataset.csv")
+data <- read_csv("dataset.csv")
 
 # Filter students only??
 data_students <- data %>%
@@ -111,7 +111,7 @@ pie(
 )
 
 # Statistical Tests
-# Independent T-Test
-print("Independent t-test:")
-t_test_result <- t.test(CGPA ~ Depression, data = data_clean)
-print(t_test_result)
+# Wilcoxon Rank-Sum Test
+print("Wilcoxon Rank-Sum Test:")
+wilcox_test_result <- wilcox.test(CGPA ~ Depression, data = data_clean)
+print(wilcox_test_result)
