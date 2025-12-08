@@ -21,69 +21,11 @@ data_clean <- data_students %>% filter(!is.na(CGPA) & !is.na(Depression) & CGPA 
 print("Clean observations (no missing data):")
 print(nrow(data_clean))
 
-#to check for noisy values within the dataset in every column
-for (col in names(data_clean)) {
-  cat("-----", col, "-----\n")
-  print(unique(data_clean[[col]]))
-  cat("\n")
-}
-
-# find the total number of unique city values within the dataset
-length(unique(data_clean$City))
-
-
-#keep only valid city names and remove any noisy values
-valid_cities <- c(
-  "Visakhapatnam", "Bangalore", "Srinagar", "Varanasi", "Jaipur", "Pune",
-  "Thane", "Chennai", "Nagpur", "Nashik", "Vadodara", "Kalyan", "Rajkot",
-  "Ahmedabad", "Kolkata", "Mumbai", "Lucknow", "Indore", "Surat", "Ludhiana",
-  "Bhopal", "Meerut", "Agra", "Ghaziabad", "Hyderabad", "Vasai-Virar",
-  "Kanpur", "Patna", "Faridabad", "Delhi"
-)
-
-#number of rows with invalid city names
-data %>% 
-  filter(!City %in% valid_cities) %>% 
-  nrow()
-
-#filter and keep only valid cities in the dataset
-data_clean <- data_clean %>% 
-  filter(City %in% valid_cities)
-
-#find unique cities again to see whether noisy data still exists
-unique(data_clean$City)
-
-#check how many students are there of 'class 12'
-data %>% 
-  filter(Degree == "'Class 12'") %>% 
-  nrow()
-
-#remove 'Class 12' from Degree
-data_clean <- data_clean %>%
-  filter(Degree != "'Class 12'")
-
-##find unique Degree values again to see whether noisy data still exists
-unique(data_clean$Degree)
-
-# find the total number of unique degree values within the dataset
-length(unique(data_clean$Degree))
 
 #check for the total number of rows removed from the dataset after data cleaning and filterng
 nrow(data)          # original
 nrow(data_clean)    # cleaned
 
-rows_removed <- data %>% 
-  filter(
-    Profession != "Student" |
-      CGPA == 0 |
-      is.na(CGPA) |
-      is.na(Depression) |
-      !City %in% valid_cities |
-      Degree == "'Class 12'"    # note the quotes around Class 12
-  ) %>% 
-  nrow()
-
-rows_removed
 
 # Overall CGPA statistics
 print("Overall CGPA Summary:")
