@@ -129,11 +129,6 @@ pie(
 )
 
 # Statistical Tests
-# Independent T-Test
-print("Independent t-test:")
-t_test_result <- t.test(CGPA ~ Depression, data = data_clean)
-print(t_test_result)
-
 # Wilcoxon Rank-Sum Test
 print("Wilcoxon Rank-Sum Test:")
 wilcox_test_result <- wilcox.test(CGPA ~ Depression, data = data_clean)
