@@ -28,21 +28,6 @@ for (col in names(data_clean)) {
   cat("\n")
 }
 
-#check how many students are there of 'class 12'
-data %>% 
-  filter(Degree == "'Class 12'") %>% 
-  nrow()
-
-#remove 'Class 12' from Degree
-data_clean <- data_clean %>%
-  filter(Degree != "'Class 12'")
-
-##find unique Degree values again to see whether noisy data still exists
-unique(data_clean$Degree)
-
-# find the total number of unique degree values within the dataset
-length(unique(data_clean$Degree))
-
 #check for the total number of rows removed from the dataset after data cleaning and filterng
 nrow(data)          # original
 nrow(data_clean)    # cleaned
