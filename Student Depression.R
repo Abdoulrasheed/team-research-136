@@ -28,31 +28,6 @@ for (col in names(data_clean)) {
   cat("\n")
 }
 
-# find the total number of unique city values within the dataset
-length(unique(data_clean$City))
-
-
-#keep only valid city names and remove any noisy values
-valid_cities <- c(
-  "Visakhapatnam", "Bangalore", "Srinagar", "Varanasi", "Jaipur", "Pune",
-  "Thane", "Chennai", "Nagpur", "Nashik", "Vadodara", "Kalyan", "Rajkot",
-  "Ahmedabad", "Kolkata", "Mumbai", "Lucknow", "Indore", "Surat", "Ludhiana",
-  "Bhopal", "Meerut", "Agra", "Ghaziabad", "Hyderabad", "Vasai-Virar",
-  "Kanpur", "Patna", "Faridabad", "Delhi"
-)
-
-#number of rows with invalid city names
-data %>% 
-  filter(!City %in% valid_cities) %>% 
-  nrow()
-
-#filter and keep only valid cities in the dataset
-data_clean <- data_clean %>% 
-  filter(City %in% valid_cities)
-
-#find unique cities again to see whether noisy data still exists
-unique(data_clean$City)
-
 #check how many students are there of 'class 12'
 data %>% 
   filter(Degree == "'Class 12'") %>% 
