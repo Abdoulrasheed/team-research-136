@@ -10,8 +10,13 @@ print(nrow(data))
 print("Student observations:")
 print(nrow(data_students))
 
-# Clean data; Remove any rows with missing CGPA or Depression values
-data_clean <- data_students %>% filter(!is.na(CGPA) & !is.na(Depression))
+#find number of students with CGPA = 0
+data_students %>% 
+  filter(CGPA == 0)  %>% 
+  nrow()
+
+# Clean data; Remove any rows with missing CGPA or Depression values, and remove CGPA of 0
+data_clean <- data_students %>% filter(!is.na(CGPA) & !is.na(Depression) & CGPA != 0)
 
 print("Clean observations (no missing data):")
 print(nrow(data_clean))
@@ -23,34 +28,22 @@ for (col in names(data_clean)) {
   cat("\n")
 }
 
-# find the total number of unique city values within the dataset
-length(unique(data_clean$City))
+#check for the total number of rows removed from the dataset after data cleaning and filterng
+nrow(data)          # original
+nrow(data_clean)    # cleaned
 
+rows_removed <- data %>% 
+  filter(
+    Profession != "Student" |
+      CGPA == 0 |
+      is.na(CGPA) |
+      is.na(Depression) |
+      !City %in% valid_cities |
+      Degree == "'Class 12'"    # note the quotes around Class 12
+  ) %>% 
+  nrow()
 
-#keep only valid city names and remove any noisy values
-valid_cities <- c(
-  "Visakhapatnam", "Bangalore", "Srinagar", "Varanasi", "Jaipur", "Pune",
-  "Thane", "Chennai", "Nagpur", "Nashik", "Vadodara", "Kalyan", "Rajkot",
-  "Ahmedabad", "Kolkata", "Mumbai", "Lucknow", "Indore", "Surat", "Ludhiana",
-  "Bhopal", "Meerut", "Agra", "Ghaziabad", "Hyderabad", "Vasai-Virar",
-  "Kanpur", "Patna", "Faridabad", "Delhi"
-)
-
-data_clean <- data_clean %>% 
-  filter(City %in% valid_cities)
-
-#find unique cities again to see whether noisy data still exists
-unique(data_clean$City)
-
-#remove 'Class 12' from Degree
-data_clean <- data_clean %>%
-  filter(Degree != "'Class 12'")
-
-##find unique Degree values again to see whether noisy data still exists
-unique(data_clean$Degree)
-
-# find the total number of unique degree values within the dataset
-length(unique(data_clean$Degree))
+rows_removed
 
 # Overall CGPA statistics
 print("Overall CGPA Summary:")
@@ -80,6 +73,51 @@ cgpa_not_depressed <- data_clean$CGPA[data_clean$Depression == 0]
 cgpa_depressed <- data_clean$CGPA[data_clean$Depression == 1]
 cgpa_overall <- data_clean$CGPA
 
+# Overall CGPA Histogram with both density curves
+h <- hist(cgpa_overall,
+          main = "CGPA Distribution among Depressed and Non-depressed students",
+          xlab = "CGPA (cumulative grade point average)",
+          col = "lightblue",
+          border = "darkblue",
+          breaks = 20,
+          freq = TRUE)
+
+# Theoretical normal curve
+mean_val <- mean(cgpa_overall, na.rm = TRUE)
+sd_val <- sd(cgpa_overall, na.rm = TRUE)
+x <- seq(min(cgpa_overall), max(cgpa_overall), length = 100)
+y <- dnorm(x, mean_val, sd_val) * length(cgpa_overall) * diff(h$breaks)[1]
+
+# Kernel density estimate (follows actual data shape)
+dens <- density(cgpa_overall)
+dens$y <- dens$y * length(cgpa_overall) * diff(h$breaks)[1]
+
+# Overlay both curves
+lines(dens, col = "red", lwd = 2)                    # Actual data shape
+lines(x, y, col = "darkgreen", lwd = 2, lty = 2)     # Theoretical normal
+
+# Add legend
+legend("bottomright", 
+       legend = c("Kernel Density (Actual)", "Normal Distribution (Theoretical)"),
+       col = c("red", "darkgreen"),
+       lty = c(1, 2),
+       lwd = 2,
+       cex = 0.7,
+       inset = 0.02)
+
+# Boxplot for the CGPA of depressed and non-depressed students created
+# depressed students perform slightly better academically
+print("Boxplot of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University/College students in India")
+boxplot(CGPA ~ Depression,
+        data = data_clean,
+        main = "Comparison of University Student's CGPA by Depression Status",
+        xlab = "Depression Status",
+        ylab = "CGPA (Cumulative Grade Point Average)",
+        names = c("Not Depressed", "Depressed"),
+        col = c("lightblue", "lightcoral"),
+        border = c("darkblue", "darkred"))
+
+
 #create a pie chart for the depressed and non-depressed students with percentages
 #pie chart with proper labels
 # Count depression status
@@ -101,64 +139,6 @@ pie(
   col = rainbow(length(counts)),
   labels = labels_with_pct
 )
-
-# create histogram of the overall student CGPA - no bell curve overlay
-# Visualizations - Histograms (Distribution Check)
-hist(cgpa_overall,
-     main = "CGPA Distribution among Depressed and Non-depressed students",
-     xlab = "CGPA cumulative grade point average",
-     ylab = "Frequency",
-     col = "lightblue",
-     border = "darkblue",
-     breaks = 20
-)
-
-# Overall CGPA Histogram (both depressed and non-depressed students) - bell curve overlay with frequency
-print("Histogram of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University/College students in India")
-h <- hist(cgpa_overall,
-          main = "CGPA Distribution among Depressed and Non-depressed students",
-          xlab = "CGPA (cumulative grade point average)",
-          col = "lightblue",
-          border = "darkblue",
-          breaks = 20,
-          freq = TRUE)
-
-mean_val <- mean(cgpa_overall, na.rm = TRUE)
-sd_val <- sd(cgpa_overall, na.rm = TRUE)
-
-# Scale the bell curve to match frequency
-x <- seq(min(cgpa_overall), max(cgpa_overall), length = 100)
-y <- dnorm(x, mean_val, sd_val) * length(cgpa_overall) * diff(h$breaks)[1]
-
-# Overlay curve
-lines(x, y, col = "red", lwd = 2)
-
-# Boxplot for the CGPA of depressed and non-depressed students created
-# depressed students perform slightly better academically
-print("Boxplot of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University/College students in India")
-boxplot(CGPA ~ Depression, 
-        data = data_clean,
-        main = "Comparison of University Student's CGPA by Depression Status",
-        xlab = "Depression Status",
-        ylab = "CGPA (Cumulative Grade Point Average)",
-        names = c("Not Depressed", "Depressed"),
-        col = c("lightblue", "lightcoral"),
-        border = c("darkblue", "darkred"))
-
-# QQ Plot - Not Depressed
-qqnorm(cgpa_not_depressed,
-       main = "Q-Q Plot: Non-Depressed Students",
-       col = "darkblue",
-       pch = 19)
-qqline(cgpa_not_depressed, col = "red", lwd = 2)
-
-# QQ Plot - Depressed
-qqnorm(cgpa_depressed,
-       main = "Q-Q Plot: Depressed Students",
-       col = "darkred",
-       pch = 19)
-qqline(cgpa_depressed, col = "red", lwd = 2)
-
 
 # Statistical Tests
 # Independent T-Test
