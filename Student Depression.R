@@ -57,8 +57,9 @@ cgpa_overall <- data_clean$CGPA
 # Overall CGPA Histogram (both depressed and non-depressed students) - bell curve overlay with frequency
 print("Histogram of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University/College students in India")
 h <- hist(cgpa_overall,
-          main = "CGPA Distribution among Depressed and Non-depressed students",
-          xlab = "CGPA (cumulative grade point average)",
+          main = "Distribution of CGPA Among Depressed and Non-Depressed Indian University Students",
+          xlab = "CGPA (Cumulative Grade Point Average)",
+          ylab = "Frequency",
           col = "lightblue",
           border = "darkblue",
           breaks = 20,
@@ -76,10 +77,10 @@ lines(x, y, col = "red", lwd = 2)
 
 # Boxplot for the CGPA of depressed and non-depressed students created
 # depressed students perform slightly better academically
-print("Boxplot of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University/College students in India")
+print("Boxplot of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University students in India")
 boxplot(CGPA ~ Depression,
         data = data_clean,
-        main = "Comparison of University Student's CGPA by Depression Status",
+        main = "Comparison of Indian University Students’ CGPA by Depression Status",
         xlab = "Depression Status",
         ylab = "CGPA (Cumulative Grade Point Average)",
         names = c("Not Depressed", "Depressed"),
@@ -104,7 +105,7 @@ labels_with_pct <- paste0(labels, "\n", counts, " (", percentages, "%)")
 # Create pie chart
 pie(
   counts,
-  main = "Distribution of Depression Status of University Students",
+  main = "Distribution of Depression Status Among Indian University Students",
   col = rainbow(length(counts)),
   labels = labels_with_pct
 )
