@@ -55,7 +55,7 @@ cgpa_depressed <- data_clean$CGPA[data_clean$Depression == 1]
 cgpa_overall <- data_clean$CGPA
 
 # Overall CGPA Histogram (both depressed and non-depressed students) - bell curve overlay with frequency
-print("Histogram of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University/College students in India")
+print("Histogram of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University students in India")
 h <- hist(cgpa_overall,
           main = "Distribution of CGPA Among Depressed and Non-Depressed Indian University Students",
           xlab = "CGPA (Cumulative Grade Point Average)",
