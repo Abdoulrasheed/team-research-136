@@ -1,5 +1,5 @@
 ##############################################
-# Appendix A: R Code for Analysis & Visualisation
+# R Code for Analysis & Visualisation
 ##############################################
 
 library(tidyverse)
