@@ -73,8 +73,7 @@ y <- dnorm(x, mean_val, sd_val) * length(cgpa_overall) * diff(h$breaks)[1]
 # add normal curve to histogram
 lines(x, y, col = "red", lwd = 2)
 
-# Boxplot for the CGPA of depressed and non-depressed students created
-# depressed students perform slightly better academically
+# create boxplot comparing cgpa between depression groups
 print("Boxplot of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University students in India")
 boxplot(CGPA ~ Depression,
         data = data_clean,
