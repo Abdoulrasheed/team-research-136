@@ -1,7 +1,7 @@
 library(tidyverse)
 data <- read_csv("dataset.csv")
 
-# Filter students only??
+# filter dataset to include only students
 data_students <- data %>%
   filter(Profession == "Student")
 
@@ -10,28 +10,27 @@ print(nrow(data))
 print("Student observations:")
 print(nrow(data_students))
 
-#find number of students with CGPA = 0
+# count students with cgpa equal to zero
 data_students %>% 
   filter(CGPA == 0)  %>% 
   nrow()
 
-# Clean data; Remove any rows with missing CGPA or Depression values, and remove CGPA of 0
+# remove rows with missing cgpa or depression values and exclude cgpa of zero
 data_clean <- data_students %>% filter(!is.na(CGPA) & !is.na(Depression) & CGPA != 0)
 
 print("Clean observations (no missing data):")
 print(nrow(data_clean))
 
-#check for the total number of rows removed from the dataset after data cleaning and filterng
+# compare row counts before and after cleaning
 nrow(data)          # original
 nrow(data_clean)    # cleaned
 
 
-# Overall CGPA statistics
+# compute overall cgpa statistics
 print("Overall CGPA Summary:")
 summary(data_clean$CGPA)
 
-# CGPA by depression status
-#adding Q1, Q2, IQR and add the title to the table
+# calculate cgpa statistics grouped by depression status
 print("CGPA by Depression Status (descriptive statistics)")
 cgpa_by_depression <- data_clean %>%
   group_by(Depression) %>%
@@ -48,13 +47,12 @@ cgpa_by_depression <- data_clean %>%
   )
 print(cgpa_by_depression)
 
-# Check distribution (normality assessment)
-# Separate CGPA by depression status using base R bracket notation
+# separate cgpa values by depression status for distribution analysis
 cgpa_not_depressed <- data_clean$CGPA[data_clean$Depression == 0]
 cgpa_depressed <- data_clean$CGPA[data_clean$Depression == 1]
 cgpa_overall <- data_clean$CGPA
 
-# Overall CGPA Histogram (both depressed and non-depressed students) - bell curve overlay with frequency
+# create histogram showing overall cgpa distribution with normal curve overlay
 print("Histogram of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University students in India")
 h <- hist(cgpa_overall,
           main = "Distribution of CGPA Among Depressed and Non-Depressed Indian University Students",
@@ -68,15 +66,14 @@ h <- hist(cgpa_overall,
 mean_val <- mean(cgpa_overall, na.rm = TRUE)
 sd_val <- sd(cgpa_overall, na.rm = TRUE)
 
-# Scale the bell curve to match frequency
+# scale normal curve to match histogram frequency
 x <- seq(min(cgpa_overall), max(cgpa_overall), length = 100)
 y <- dnorm(x, mean_val, sd_val) * length(cgpa_overall) * diff(h$breaks)[1]
 
-# Overlay curve
+# add normal curve to histogram
 lines(x, y, col = "red", lwd = 2)
 
-# Boxplot for the CGPA of depressed and non-depressed students created
-# depressed students perform slightly better academically
+# create boxplot comparing cgpa between depression groups
 print("Boxplot of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University students in India")
 boxplot(CGPA ~ Depression,
         data = data_clean,
@@ -88,19 +85,13 @@ boxplot(CGPA ~ Depression,
         border = c("darkblue", "darkred"))
 
 
-#create a pie chart for the depressed and non-depressed students with percentages
-#pie chart with proper labels
-# Count depression status
+# create pie chart showing distribution of depression status with percentages
 counts <- table(data_clean$Depression)
-
-# Labels
 labels <- c("Non-Depressed", "Depressed")
+percentages <- round(100 * counts / sum(counts), 1)
+labels_with_pct <- paste0(labels, "\n", counts, " (", percentages, "%)"))
 
-# Calculate percentages
-percentages <- round(100 * counts / sum(counts), 1)  # rounded to 1 decimal
-
-# Combine labels with counts and percentages
-labels_with_pct <- paste0(labels, "\n", counts, " (", percentages, "%)")
+# generate pie chart with labeled segments
 
 # Create pie chart
 pie(
@@ -110,8 +101,7 @@ pie(
   labels = labels_with_pct
 )
 
-# Statistical Tests
-# Wilcoxon Rank-Sum Test
+# perform wilcoxon rank-sum test to compare median cgpa between groups
 print("Wilcoxon Rank-Sum Test:")
 wilcox_test_result <- wilcox.test(CGPA ~ Depression, data = data_clean)
 print(wilcox_test_result)
