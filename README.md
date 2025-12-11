@@ -26,8 +26,11 @@ https://www.kaggle.com/datasets/adilshamim8/student-depression-dataset/data
 - [x] Appendices
 
 ### Visualizations
+#### Histogram
 ![Histogram](./plots/Histogram.png)
+#### Boxplot
 ![Boxplot](./plots/boxplot.png)
+#### Pie Chart
 ![Pie Chart](./plots/piechart.png)
 
 ### How to Run
