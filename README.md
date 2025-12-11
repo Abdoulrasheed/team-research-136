@@ -17,11 +17,6 @@ https://www.kaggle.com/datasets/adilshamim8/student-depression-dataset/data
 - [x] Reject null hypothesis or not
 - [x] Presentation of Hypothesis
 
-### Visualizations
-![Histogram](./plots/histogram%20-%20normal%20distribution.png)
-![Boxplot](./plots/boxplot.png)
-![Pie Chart](./plots/piechart.png)
-
 ## Phase II (Create Report)
 - [x] Study 3 Research Papers (Background)
 - [x] Visualization
@@ -29,6 +24,11 @@ https://www.kaggle.com/datasets/adilshamim8/student-depression-dataset/data
 - [x] Conclusions
 - [x] References
 - [x] Appendices
+
+### Visualizations
+![Histogram](./plots/Histogram.png)
+![Boxplot](./plots/boxplot.png)
+![Pie Chart](./plots/piechart.png)
 
 ### How to Run
 - Open `Student Depression.R` in RStudio or VS Code.
