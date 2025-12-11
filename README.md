@@ -35,6 +35,6 @@ https://www.kaggle.com/datasets/adilshamim8/student-depression-dataset/data
 
 ### How to Run
 - Open `Student Depression.R` in RStudio or VS Code.
-- Ensure `dataset.csv` is in the project root.
+- Ensure `student_depression_dataset.csv` is in the project root.
 - Install dependencies: `tidyverse`.
 - Run the script to reproduce cleaning, analysis, and plots.
