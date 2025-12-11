@@ -47,8 +47,7 @@ cgpa_by_depression <- data_clean %>%
   )
 print(cgpa_by_depression)
 
-# Check distribution (normality assessment)
-# Separate CGPA by depression status using base R bracket notation
+# separate cgpa values by depression status for distribution analysis
 cgpa_not_depressed <- data_clean$CGPA[data_clean$Depression == 0]
 cgpa_depressed <- data_clean$CGPA[data_clean$Depression == 1]
 cgpa_overall <- data_clean$CGPA
