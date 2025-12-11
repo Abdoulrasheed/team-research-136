@@ -1,5 +1,5 @@
 library(tidyverse)
-data <- read_csv("dataset.csv")
+data <- read_csv("student_depression_dataset.csv")
 
 # filter dataset to include only students
 data_students <- data %>%
@@ -89,7 +89,7 @@ boxplot(CGPA ~ Depression,
 counts <- table(data_clean$Depression)
 labels <- c("Non-Depressed", "Depressed")
 percentages <- round(100 * counts / sum(counts), 1)
-labels_with_pct <- paste0(labels, "\n", counts, " (", percentages, "%)"))
+labels_with_pct <- paste0(labels, "\n", counts, " (", percentages, "%)")
 
 # generate pie chart with labeled segments
 
