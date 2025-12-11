@@ -101,8 +101,7 @@ pie(
   labels = labels_with_pct
 )
 
-# Statistical Tests
-# Wilcoxon Rank-Sum Test
+# perform wilcoxon rank-sum test to compare median cgpa between groups
 print("Wilcoxon Rank-Sum Test:")
 wilcox_test_result <- wilcox.test(CGPA ~ Depression, data = data_clean)
 print(wilcox_test_result)
