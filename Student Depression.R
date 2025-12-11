@@ -85,19 +85,13 @@ boxplot(CGPA ~ Depression,
         border = c("darkblue", "darkred"))
 
 
-#create a pie chart for the depressed and non-depressed students with percentages
-#pie chart with proper labels
-# Count depression status
+# create pie chart showing distribution of depression status with percentages
 counts <- table(data_clean$Depression)
-
-# Labels
 labels <- c("Non-Depressed", "Depressed")
+percentages <- round(100 * counts / sum(counts), 1)
+labels_with_pct <- paste0(labels, "\n", counts, " (", percentages, "%)"))
 
-# Calculate percentages
-percentages <- round(100 * counts / sum(counts), 1)  # rounded to 1 decimal
-
-# Combine labels with counts and percentages
-labels_with_pct <- paste0(labels, "\n", counts, " (", percentages, "%)")
+# generate pie chart with labeled segments
 
 # Create pie chart
 pie(
