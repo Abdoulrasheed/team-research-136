@@ -1,7 +1,7 @@
 library(tidyverse)
 data <- read_csv("dataset.csv")
 
-# Filter students only??
+# filter dataset to include only students
 data_students <- data %>%
   filter(Profession == "Student")
 
@@ -10,18 +10,18 @@ print(nrow(data))
 print("Student observations:")
 print(nrow(data_students))
 
-#find number of students with CGPA = 0
+# count students with cgpa equal to zero
 data_students %>% 
   filter(CGPA == 0)  %>% 
   nrow()
 
-# Clean data; Remove any rows with missing CGPA or Depression values, and remove CGPA of 0
+# remove rows with missing cgpa or depression values and exclude cgpa of zero
 data_clean <- data_students %>% filter(!is.na(CGPA) & !is.na(Depression) & CGPA != 0)
 
 print("Clean observations (no missing data):")
 print(nrow(data_clean))
 
-#check for the total number of rows removed from the dataset after data cleaning and filterng
+# compare row counts before and after cleaning
 nrow(data)          # original
 nrow(data_clean)    # cleaned
 
