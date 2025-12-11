@@ -18,7 +18,7 @@ https://www.kaggle.com/datasets/adilshamim8/student-depression-dataset/data
 - [x] Presentation of Hypothesis
 
 ### Visualizations
-![Histogram](./plots/histogram%20-%20normal%20distribution.png)
+![Histogram](./plots/Histogram.png)
 ![Boxplot](./plots/boxplot.png)
 ![Pie Chart](./plots/piechart.png)
 
