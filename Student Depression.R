@@ -26,12 +26,11 @@ nrow(data)          # original
 nrow(data_clean)    # cleaned
 
 
-# Overall CGPA statistics
+# compute overall cgpa statistics
 print("Overall CGPA Summary:")
 summary(data_clean$CGPA)
 
-# CGPA by depression status
-#adding Q1, Q2, IQR and add the title to the table
+# calculate cgpa statistics grouped by depression status
 print("CGPA by Depression Status (descriptive statistics)")
 cgpa_by_depression <- data_clean %>%
   group_by(Depression) %>%
