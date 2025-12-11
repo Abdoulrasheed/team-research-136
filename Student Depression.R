@@ -52,7 +52,7 @@ cgpa_not_depressed <- data_clean$CGPA[data_clean$Depression == 0]
 cgpa_depressed <- data_clean$CGPA[data_clean$Depression == 1]
 cgpa_overall <- data_clean$CGPA
 
-# Overall CGPA Histogram (both depressed and non-depressed students) - bell curve overlay with frequency
+# create histogram showing overall cgpa distribution with normal curve overlay
 print("Histogram of Cumulative Grade Point Average (CGPA) of Depressed and Non-depressed University students in India")
 h <- hist(cgpa_overall,
           main = "Distribution of CGPA Among Depressed and Non-Depressed Indian University Students",
@@ -66,11 +66,11 @@ h <- hist(cgpa_overall,
 mean_val <- mean(cgpa_overall, na.rm = TRUE)
 sd_val <- sd(cgpa_overall, na.rm = TRUE)
 
-# Scale the bell curve to match frequency
+# scale normal curve to match histogram frequency
 x <- seq(min(cgpa_overall), max(cgpa_overall), length = 100)
 y <- dnorm(x, mean_val, sd_val) * length(cgpa_overall) * diff(h$breaks)[1]
 
-# Overlay curve
+# add normal curve to histogram
 lines(x, y, col = "red", lwd = 2)
 
 # Boxplot for the CGPA of depressed and non-depressed students created
